@@ -1,0 +1,154 @@
+import 'package:flutter/material.dart';
+import 'package:re_attendance/screens/ManagementDashboard.dart';
+
+class AdminDashboard extends StatelessWidget {
+  const AdminDashboard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Center(
+            child: Text(
+              'Admin Dashboard',
+              style: TextStyle(color: Colors.black, fontSize: 30),
+            ),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                DashboardCards(
+                  heading: 'Manage Management Staff',
+                  subtext1: 'Add, edit or remove',
+                  subtext2: ' management level employee.',
+                  icon: Icons.people_alt_outlined,
+                ),
+                DashboardCards(
+                  heading: 'Manage Supervisors',
+                  subtext1: 'Handle Supervisors accounts and',
+                  subtext2: ' assign roles.',
+                  icon: Icons.home_repair_service,
+                ),
+                DashboardCards(
+                  heading: 'Manage Workers',
+                  subtext1: 'Oversee general worker pofiles and ',
+                  subtext2: ' attendence.',
+                  icon: Icons.home_mini,
+                ),
+                DashboardCards(
+                  heading: 'Set Holidays',
+                  subtext1: 'Configure company holidays and',
+                  subtext2: 'speical events.',
+                  icon: Icons.event,
+                )
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
+class DashboardCards extends StatelessWidget {
+  const DashboardCards({
+    super.key,
+    required this.icon,
+    required this.heading,
+    required this.subtext1,
+    required this.subtext2,
+  });
+
+  final IconData icon;
+  final String heading;
+  final String subtext1;
+  final String subtext2;
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.24,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.grey.shade100)),
+      child: Stack(
+        children: [
+          Positioned(
+              top: size.height * 0.05,
+              left: size.width * 0.04,
+              child: CircleAvatar(
+                radius: 35,
+                child: Icon(
+                  icon,
+                  size: 30,
+                ),
+              )),
+          Positioned(
+            top: size.height * 0.05,
+            left: size.width * 0.24,
+            child: Text(
+              heading,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.075,
+            left: size.width * 0.24,
+            child: Text(
+              subtext1,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.095,
+            left: size.width * 0.24,
+            child: Text(
+              subtext2,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          Positioned(
+              top: size.height * 0.15,
+              left: size.width * 0.01,
+              right: size.width * 0.01,
+              child: Container(
+                height: size.height * 0.08,
+                // width: size.width * 0.5,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(top: BorderSide(color: Colors.black))),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.blue.shade800,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'View Details',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                  ),
+                ),
+              ))
+        ],
+      ),
+    );
+  }
+}
