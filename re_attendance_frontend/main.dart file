@@ -1,0 +1,375 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+class DashboardItem {
+  final String text;
+  final IconData icon;
+
+  DashboardItem({required this.text, required this.icon});
+}
+
+class Managementdashboard extends StatefulWidget {
+  const Managementdashboard({super.key});
+
+  @override
+  State<Managementdashboard> createState() => _ManagementdashboardState();
+}
+
+class _ManagementdashboardState extends State<Managementdashboard> {
+  final List<DashboardItem> items = [
+    DashboardItem(text: "View Team", icon: Icons.people_alt_outlined),
+    DashboardItem(text: "Manage Leaves", icon: Icons.calendar_month_rounded),
+    DashboardItem(text: "Generate Reports", icon: Icons.note_sharp),
+    DashboardItem(text: "Adjust Rules", icon: Icons.shield_outlined),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+            'Management Dashboard',
+            style: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+          child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Container(
+              height: size.height * 0.24,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: size.height * 0.03,
+                    left: size.width * 0.04,
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              border: Border.all(color: Colors.blue)),
+                          child: Icon(
+                            Icons.close_outlined,
+                            color: Colors.blue,
+                            size: 35,
+                          ),
+                        ),
+                        SizedBox(
+                          width: size.width * 0.01,
+                        ),
+                        Text(
+                          'Attendence Status',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          width: size.width * 0.14,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: Colors.red),
+                          child: TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'Absent',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              )),
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.1,
+                    left: size.width * 0.04,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RowIcon(
+                          i1: Icons.close_outlined,
+                          text1: 'Time: ',
+                          c1: Colors.grey,
+                          t1: Colors.grey,
+                        ),
+                        RowIcon(
+                          i1: Icons.location_on_outlined,
+                          text1: 'Location: ',
+                          c1: Colors.grey,
+                          t1: Colors.grey,
+                        ),
+                        RowIcon(
+                          i1: Icons.calendar_month,
+                          text1: 'Date: ',
+                          c1: Colors.grey,
+                          t1: Colors.grey,
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.1,
+                    right: size.width * 0.04,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'N/A',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                        Text(
+                          'N/A',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                        Text(
+                          'Novemeber 12, 2024',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            Container(
+              width: double.infinity,
+              height: size.height * 0.2,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    //inner container-->
+                    Container(
+                        height: size.height * 0.1,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: Colors.blue.shade800,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Column(
+                          children: [
+                            IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: Colors.white,
+                                  size: 30,
+                                )),
+                            Text(
+                              'Check-In',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500),
+                            )
+                          ],
+                        )),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Text(
+                      'Verification via GPS & Camera for accurate\nattendence.',
+                      style: TextStyle(color: Colors.black54, fontSize: 15),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Container(
+              height: size.height * 0.22,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: size.height * 0.02,
+                    left: size.width * 0.03,
+                    child: Text(
+                      "Today's Overview",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.06,
+                    left: size.width * 0.03,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        RowIcon(
+                          i1: Icons.people_alt_outlined,
+                          text1: 'Team Members: ',
+                          c1: Colors.blue,
+                          t1: Colors.black,
+                        ),
+                        RowIcon(
+                          i1: Icons.file_copy_outlined,
+                          text1: 'Pending Leaves: ',
+                          c1: Colors.blue,
+                          t1: Colors.black,
+                        ),
+                        RowIcon(
+                          i1: Icons.event_note_outlined,
+                          text1: 'Team Members: ',
+                          c1: Colors.blue,
+                          t1: Colors.black,
+                        ),
+                        RowIcon(
+                          i1: Icons.watch_later_outlined,
+                          text1: 'Team Members: ',
+                          c1: Colors.blue,
+                          t1: Colors.black,
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.06,
+                    right: size.width * 0.01,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          '24/28 Present',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                        Text('3',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 20)),
+                        Text('1',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 20)),
+                        Text('5',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 20)),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            //grid view
+            Container(
+                height: size.height * 0.3,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15)),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20),
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    final item = items[index];
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 1,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            item.icon, // you can use different icons per item if needed
+                            color: Colors.blue,
+                            size: 40,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            item.text,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )),
+            SizedBox(
+              height: size.height * 0.5,
+            ),
+          ],
+        ),
+      )),
+    );
+  }
+}
+
+class RowIcon extends StatelessWidget {
+  const RowIcon({
+    super.key,
+    required this.i1,
+    required this.text1,
+    required this.c1,
+    required this.t1,
+  });
+
+  final IconData i1;
+  final String text1;
+  final Color c1;
+  final Color t1;
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Row(
+      children: [
+        Icon(
+          i1,
+          size: 30,
+          color: c1,
+        ),
+        SizedBox(
+          width: size.width * 0.01,
+        ),
+        Text(
+          text1,
+          style: TextStyle(color: t1, fontSize: 20),
+        )
+      ],
+    );
+  }
+}
