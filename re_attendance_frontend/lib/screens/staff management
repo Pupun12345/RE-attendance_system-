@@ -1,0 +1,222 @@
+import 'package:flutter/material.dart';
+
+class StaffmasterUsermanagement extends StatefulWidget {
+  const StaffmasterUsermanagement({super.key});
+
+  @override
+  State<StaffmasterUsermanagement> createState() =>
+      _StaffmasterUsermanagementState();
+}
+
+class _StaffmasterUsermanagementState extends State<StaffmasterUsermanagement> {
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+            'Manage Users',
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+            child: CircleAvatar(
+              radius: 20,
+            ),
+          )
+        ],
+      ),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(color: Colors.white),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+              addingEmployees(
+                text1: 'Add Worker',
+                i1: Icons.add,
+              ),
+              addingEmployees(
+                text1: 'Add Worker',
+                i1: Icons.add,
+              ),
+              addingEmployees(
+                text1: 'Add Worker',
+                i1: Icons.add,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Current Users',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
+              profileContainer(
+                t1: 'Alice\n johnson',
+                t2: 'Worker',
+              ),
+              profileContainer(
+                t1: 'Bob Smith',
+                t2: 'Supervisor',
+              ),
+              profileContainer(
+                t1: 'charlie\n Brown',
+                t2: 'management\nStaff',
+              ),
+              profileContainer(
+                t1: 'Diana Prince',
+                t2: 'Worker',
+              ),
+              profileContainer(
+                t1: 'Eve Adams',
+                t2: 'Superviso',
+              ),
+              profileContainer(
+                t1: 'Frank Milker',
+                t2: 'Worker',
+              ),
+              profileContainer(
+                t1: 'Alice\n johnson',
+                t2: 'Worker',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class profileContainer extends StatelessWidget {
+  const profileContainer({
+    super.key,
+    required this.t1,
+    required this.t2,
+  });
+
+  final String t1;
+  final String t2;
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        height: size.height * 0.12,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(5)),
+        child: Stack(
+          children: [
+            Positioned(
+                top: size.height * 0.02,
+                left: size.width * 0.03,
+                child: CircleAvatar(
+                  radius: 25,
+                  backgroundColor: Colors.grey.shade100,
+                )),
+            Positioned(
+                top: size.height * 0.02,
+                left: size.width * 0.18,
+                child: Column(
+                  children: [
+                    Text(
+                      t1,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 20),
+                    ),
+                    Text(
+                      t2,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 20),
+                    )
+                  ],
+                )),
+            Positioned(
+                top: size.height * 0.045,
+                right: size.width * 0.04,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.edit_document,
+                        color: Colors.blue.shade700,
+                        size: 30,
+                      ),
+                      SizedBox(
+                        width: size.width * 0.1,
+                      ),
+                      Icon(
+                        Icons.delete_outline_outlined,
+                        color: Colors.red,
+                        size: 30,
+                      ),
+                    ],
+                  ),
+                ))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class addingEmployees extends StatelessWidget {
+  const addingEmployees({
+    super.key,
+    required this.text1,
+    required this.i1,
+  });
+
+  final String text1;
+  final IconData i1;
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        height: size.height * 0.056,
+        width: double.infinity,
+        color: Colors.blue.shade800,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              i1,
+              color: Colors.white,
+              size: 25,
+            ),
+            SizedBox(
+              width: size.width * 0.01,
+            ),
+            Text(
+              text1,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
